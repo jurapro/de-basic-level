@@ -1,3 +1,6 @@
+<?php
+require_once "helpers/functions.php";
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -22,18 +25,37 @@
 
 <main>
     <h2>Вход</h2>
-    <p class="error"></p>
-    <form>
-        <label>
-            Логин
-            <input type="text" name="login">
-        </label>
-        <label>
-            Пароль
-            <input type="password" name="password">
-        </label>
-        <button>Войти</button>
-    </form>
+    <p class="error">
+        <?php
+        $login = $_GET['login'] ?? '';
+        $password = $_GET['password'] ?? '';
+        if ($login && $password) {
+            if (login($login, $password)) {
+                header("Location: http://kinder-shop.ru/admpanel");
+                $_SESSION['user'] = $login;
+            } else {
+                echo "Логин или пароль не верные";
+            }
+        }
+        ?>
+    </p>
+    <?php
+    if (!empty($_SESSION['user'])) {
+        echo "Вы вошли как $_SESSION[user].  <a href='/logout.php'>Выйти</a>";
+    } else {
+        ?>
+        <form>
+            <label>
+                Логин
+                <input type="text" name="login">
+            </label>
+            <label>
+                Пароль
+                <input type="password" name="password">
+            </label>
+            <button>Войти</button>
+        </form>
+    <?php } ?>
 </main>
 <script src="scripts/main.js"></script>
 </body>
