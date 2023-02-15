@@ -1,5 +1,8 @@
 <?php
 require_once "helpers/functions.php";
+if (!empty($_SESSION['user'])) {
+    header("Location: http://kinder-shop.ru/admpanel");
+}
 ?>
 <!doctype html>
 <html lang="ru">
@@ -39,23 +42,17 @@ require_once "helpers/functions.php";
         }
         ?>
     </p>
-    <?php
-    if (!empty($_SESSION['user'])) {
-        echo "Вы вошли как $_SESSION[user].  <a href='/logout.php'>Выйти</a>";
-    } else {
-        ?>
-        <form>
-            <label>
-                Логин
-                <input type="text" name="login">
-            </label>
-            <label>
-                Пароль
-                <input type="password" name="password">
-            </label>
-            <button>Войти</button>
-        </form>
-    <?php } ?>
+    <form>
+        <label>
+            Логин
+            <input type="text" name="login">
+        </label>
+        <label>
+            Пароль
+            <input type="password" name="password">
+        </label>
+        <button>Войти</button>
+    </form>
 </main>
 <script src="scripts/main.js"></script>
 </body>
