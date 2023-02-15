@@ -1,0 +1,29 @@
+* {
+    font-family: Calibri, serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    width: 100px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10pt;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error {
+    color: red;
+}
